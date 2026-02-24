@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
     if @user != nil
       # 3. if they know their password -> login is successful
       if BCrypt::Password.new(@user["password"]) == params["password"]
+        cookies["zebra"] = "giraffe"
+        session["user_id"] = @user["id"]
         # store the user's ID in the session
         session["user_id"] = @user["id"]
         flash["notice"] = "Welcome."
