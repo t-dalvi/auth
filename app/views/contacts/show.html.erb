@@ -1,0 +1,50 @@
+<h1><%= @contact["last_name"] %>, <%= @contact["first_name"] %></h1>
+
+<ul>
+  <li>Company: <a href="/companies/<%= @company["id"] %>"><%= @company["name"] %></a></li>
+  <li>Email: <%= @contact["email"] %></li>
+  <li>Phone: <%= @contact["phone_number"] %></li>
+</ul>
+
+<p><a href="/companies/<%= @company["id"] %>">Back to <%= @company["name"] %> Contacts</a></p>
+
+<p><a href="/contacts/<%= @contact["id"] %>/edit">Edit Contact</a></p>
+
+<form action="/contacts/<%= @contact["id"] %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button>Delete Contact</button>
+</form>
+
+<h3>Sales Activity</h3>
+
+<ul>
+  <% for activity in @activities %>
+    <li>
+      <%= activity["activity_type"] %>
+      <br>
+      <%= activity["note"] %>
+    </li>
+  <% end %>
+</ul>
+
+<h4>Log Activity:</h4>
+
+<form action="/activities" method="post">
+  <p>
+    <select name="activity_type" id="activity_type_select">
+      <option value="call">call</option>
+      <option value="email">email</option>
+      <option value="meeting">meeting</option>
+    </select>
+    with <%= @contact["first_name"] %> <%= @contact["last_name"] %>
+  </p>
+
+  <p>
+    <label for="note_input">Note</label>
+    <textarea name="note" id="note_input"></textarea>
+  </p>
+
+  <input type="hidden" name="contact_id" value="<%= @contact["id"] %>" id="contact_id_input">
+
+  <button>Submit</button>
+</form>

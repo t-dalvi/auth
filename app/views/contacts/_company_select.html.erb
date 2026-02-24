@@ -1,0 +1,8 @@
+<p>
+  <label for="company_id_select">Company</label>
+  <select name="company_id" id="company_id_select">
+    <% for company in Company.all %>
+      <option value="<%= company["id"] %>"><%= company["name"] %></option>
+    <% end %>
+  </select>
+</p>

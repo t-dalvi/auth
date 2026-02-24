@@ -1,0 +1,22 @@
+<h1>Do the TODOs</h1>
+
+<form action="/tasks" method="post">
+  <input type="text" name="description">
+  <button>Add new task</button>
+</form>
+
+<table>
+  <% for task in @tasks %>
+    <tr>
+      <td>
+        <%= task["description"] %>
+      </td>
+      <td>
+        <form action="/tasks/<%= task["id"] %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button>Complete</button>
+        </form>
+      </td>
+    </tr>
+  <% end %>
+</table>
