@@ -4,26 +4,35 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # authenticate the user
-    # 1. try to find the user by their unique identifier
-    @user = User.find_by({"email" => params["email"]})
-    # 2. if the user exists -> check if they know their password
-    if @user != nil
-      # 3. if they know their password -> login is successful
-      if BCrypt::Password.new(@user["password"]) == params["password"]
-        cookies["zebra"] = "giraffe"
+    @user = User.find_by({ "email" => params["email"] })
+    if @user
+      authenticated = false
+      # Attempt BCrypt authentication first
+      if @user["password"].start_with?("$2a$", "$2b$", "$2y$")
+        if BCrypt::Password.new(@user["password"]) == params["password"]
+          authenticated = true
+        end
+      else
+        # Legacy password (plaintext or old hash)
+        if @user["password"] == params["password"]
+          authenticated = true
+          # Upgrade password to BCrypt
+          @user["password"] = BCrypt::Password.create(params["password"])
+          @user.save
+          flash["notice"] = "Your password has been upgraded for better security."
+        end
+      end
+
+      if authenticated
         session["user_id"] = @user["id"]
-        # store the user's ID in the session
-        session["user_id"] = @user["id"]
-        flash["notice"] = "Welcome."
+        flash["notice"] ||= "Welcome." # Use ||= to keep upgrade message if present
         redirect_to "/companies"
       else
-        flash["notice"] = "Stupid Stupid Stupid"
+        flash["notice"] = "Invalid email or password."
         redirect_to "/login"
-      end 
+      end
     else
-      # 4. if the user doesn't exist or they don't know their password -> login fails
-      flash["notice"] = "Stupid Stupid Stupid"
+      flash["notice"] = "Invalid email or password."
       redirect_to "/login"
     end
   end

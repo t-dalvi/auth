@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
   def show
     @contact = Contact.find_by({ "id" => params["id"] })
     @company = Company.find_by({ "id" => @contact["company_id"] })
-    @activities = Activity.where({ "contact_id" => @contact["id"] })
+    @activities = Activity.where({ "contact_id" => @contact["id"], "user_id" => session["user_id"] })
   end
 
   def new

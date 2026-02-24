@@ -1,1 +1,137 @@
 /* Application styles */
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #0056b3; /* Darker blue for headings */
+}
+
+a {
+  color: #007bff; /* Bright blue for links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+/* Navigation/Header styling */
+header {
+  background-color: #e2e6ea; /* Light grey background */
+  padding: 10px 20px;
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 20px;
+}
+
+header p {
+  margin: 0;
+}
+
+/* Flash messages */
+.flash_notice {
+  background-color: #d4edda; /* Light green for success */
+  color: #155724; /* Dark green text */
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+/* Forms */
+form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 20px 0;
+}
+
+form p {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+  width: calc(100% - 22px); /* Account for padding and border */
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #007bff; /* Bright blue button */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Tables (for displaying company/contact lists) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+  border: 1px solid #dee2e6;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Zebra striping */
+}
+
+table tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Specific elements for Companies/Contacts */
+.company-details, .contact-details {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.company-details h2, .contact-details h2 {
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
