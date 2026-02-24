@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources "companies"
   resources "contacts"
-  resources "activities"
+  resources "activities", only: [:create]
   resources "tasks"
   resources "users"
 
